@@ -6,10 +6,10 @@ flutter_native_splash:
   image_dark: assets/images/splash.png
  
   android_12:
-    image: assets/images/splash.png
+    image: assets/images/splash_android_12.png
     
     #icon_background_color: "#FFFFFF"
-    image_dark: assets/images/splash.png
+    image_dark: assets/images/splash_android_12.png
     #icon_background_color_dark: "#000000"
 
   android: true
