@@ -13,7 +13,7 @@ class DocdocLogo extends StatelessWidget {
       children: [
         SvgPicture.asset('assets/svgs/docdoc_logo.svg', height: 40),
         SizedBox(width: 10.w),
-        Text('DocDoc', style: Styles.font24Black700Weight),
+        Text('DocDoc', style: Styles.font24BlackBold),
       ],
     );
   }
