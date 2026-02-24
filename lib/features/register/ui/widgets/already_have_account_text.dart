@@ -3,9 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAccountText extends StatelessWidget {
-  final VoidCallback onSignUpTap;
+  final VoidCallback onLoginTap;
 
-  const AlreadyHaveAccountText({super.key, required this.onSignUpTap});
+  const AlreadyHaveAccountText({super.key, required this.onLoginTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class AlreadyHaveAccountText extends StatelessWidget {
           style: Styles.font12Blackregular,
           children: [
             TextSpan(
-              text: "Sign Up",
+              text: "Login",
               style: Styles.font12Blueregular,
-              recognizer: TapGestureRecognizer()..onTap = onSignUpTap,
+              recognizer: TapGestureRecognizer()..onTap = onLoginTap,
             ),
           ],
         ),

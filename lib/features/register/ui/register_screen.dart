@@ -1,15 +1,14 @@
 import 'package:doctor_appointments/core/helper/spacing.dart';
-import 'package:doctor_appointments/core/routing/app_router.dart';
 import 'package:doctor_appointments/core/routing/routes.dart';
 import 'package:doctor_appointments/core/theming/styles.dart';
-import 'package:doctor_appointments/features/login/ui/widgets/do_not_have_account_text.dart';
-import 'package:doctor_appointments/features/login/ui/widgets/email_and_password.dart';
 import 'package:doctor_appointments/features/login/ui/widgets/terms_and_conditions_text.dart';
+import 'package:doctor_appointments/features/register/ui/widgets/already_have_account_text.dart';
+import 'package:doctor_appointments/features/register/ui/widgets/register_email_and_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +17,24 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Wellcome Back', style: Styles.font24BlueBlod),
+                Text('Create Account', style: Styles.font24BlueBlod),
                 verticalSpace(8),
                 Text(
-                  'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
+                  'Create an account to get started',
                   style: Styles.font13GrayRegular,
                 ),
                 verticalSpace(36),
-                EmailAndPassword(),
+                RegisterEmailAndPassword(),
                 verticalSpace(16),
                 TermsAndConditionsText(),
                 verticalSpace(24),
-                DoNotHaveAccountText(
-                  onSignUpTap: () =>
-                      Navigator.pushNamed(context, Routes.registerScreen),
+                AlreadyHaveAccountText(
+                  onLoginTap: () =>
+                      Navigator.pushNamed(context, Routes.loginScreen),
                 ),
               ],
             ),

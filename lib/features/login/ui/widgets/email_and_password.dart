@@ -2,7 +2,6 @@ import 'package:doctor_appointments/core/helper/app_regex.dart';
 import 'package:doctor_appointments/core/helper/spacing.dart';
 import 'package:doctor_appointments/core/theming/app_colors.dart';
 import 'package:doctor_appointments/core/theming/styles.dart';
-import 'package:doctor_appointments/features/login/data/models/login_request_body.dart';
 import 'package:doctor_appointments/features/login/logic/cubit/login_cubit.dart';
 import 'package:doctor_appointments/features/login/ui/widgets/App_text_form_field.dart';
 import 'package:doctor_appointments/features/login/ui/widgets/login_bloc_listener.dart';
@@ -18,7 +17,7 @@ class EmailAndPassword extends StatefulWidget {
 }
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController passwordController;
   bool isObscured = false;
   bool hasSpecialCharacter = false;
   bool hasNumber = false;
@@ -42,6 +41,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   @override
   void initState() {
+    passwordController = context.read<LoginCubit>().passwordController;
     setupPasswordControllerListener();
     super.initState();
   }
@@ -122,12 +122,15 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
 
   void validateThenDoLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates(
-        LoginRequestBody(
-          email: context.read<LoginCubit>().emailController.text.trim(),
-          password: passwordController.text.trim(),
-        ),
-      );
+      context.read<LoginCubit>().emitLoginStates();
     }
+    // if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+    //   context.read<LoginCubit>().emitLoginStates(
+    //     LoginRequestBody(
+    //       email: context.read<LoginCubit>().emailController.text.trim(),
+    //       password: passwordController.text.trim(),
+    //     ),
+    //   );
+    // }
   }
 }
