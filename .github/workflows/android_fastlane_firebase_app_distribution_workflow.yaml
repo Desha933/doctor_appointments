@@ -25,10 +25,6 @@ jobs:
       - name: Build APK
         run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
     
-      - name: Add Linux platform for bundler
-        working-directory: android
-        run: bundle lock --add-platform x86_64-linux
-
       
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -36,7 +32,11 @@ jobs:
           ruby-version: 3.4.8
           bundler-cache: true       
           working-directory: android
-
+      
+      - name: Install Bundler
+        working-directory: android
+        run: gem install bundler
+        
       - name: Install Fastlane
         run: gem install fastlane
 
