@@ -24,7 +24,12 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+    
+      - name: Add Linux platform for bundler
+        working-directory: android
+        run: bundle lock --add-platform x86_64-linux
 
+      
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
