@@ -23,7 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
