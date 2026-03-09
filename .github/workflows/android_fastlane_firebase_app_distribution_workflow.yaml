@@ -10,33 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-         
-         
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.41.1"
-          
-
-      - name: Install dependencies
-        run: flutter pub get
-
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with: { ruby-version: '3.0' }
+      - uses: subosito/flutter-action@v2
+        with: { channel: 'stable' }
+      - run: flutter pub get
+      - name: Install Fastlane
+        run: |
+          cd android
+          bundle install
       - name: Build APK
         run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
-    
-      
-      # - name: Setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 3.4.8
-      #     bundler-cache: true       
-      #     working-directory: android
-      
-        
-      # - name: Install Fastlane
-      #   run: gem install fastlane
 
       - name: Deploy to Firebase
         run: |
