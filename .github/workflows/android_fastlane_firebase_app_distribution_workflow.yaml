@@ -27,16 +27,16 @@ jobs:
         run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
     
       
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.4.8
-          bundler-cache: true       
-          working-directory: android
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.4.8
+      #     bundler-cache: true       
+      #     working-directory: android
       
         
-      - name: Install Fastlane
-        run: gem install fastlane
+      # - name: Install Fastlane
+      #   run: gem install fastlane
 
       - name: Deploy to Firebase
         run: |
