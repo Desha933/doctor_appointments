@@ -14,21 +14,14 @@ jobs:
         working-directory: .
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2
-          bundler-cache: true
-          working-directory: android
+        distribution: 'temurin'
+        java-version: '17'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -39,14 +32,17 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
-      - name: Install Fastlane Gems
-        working-directory: android
-        run: bundle install
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.8'
+          bundler-cache: true
+          working-directory: android
 
       - name: Build APK
         run: flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
 
-      - name: Deploy to Firebase App Distribution
+      - name: Deploy to Firebase
         working-directory: android
         run: bundle exec fastlane firebase_distribution
         env:

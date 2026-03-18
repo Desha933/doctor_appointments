@@ -114,14 +114,7 @@ class _RegisterEmailAndPasswordState extends State<RegisterEmailAndPassword> {
             validator: (value) {
               if (value!.isEmpty) {
                 return 'ConfirmPassword is required';
-              } else if (value != passwordController.text) {
-                return 'ConfirmPassword is not match';
-              } else if (context
-                      .read<RegisterCubit>()
-                      .confirmPasswordController
-                      .text
-                      .trim() !=
-                  passwordController.text.trim()) {
+              } else if (value != passwordController.text.trim()) {
                 return 'ConfirmPassword is not match';
               }
               return null;
